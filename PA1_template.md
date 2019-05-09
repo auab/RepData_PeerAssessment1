@@ -59,7 +59,7 @@ qplot(x=sum_step,data=step_per_day,bins=10,xlab = "Number of steps",ylab = "Freq
 
 ![](figure/unnamed-chunk-2-1.png)<!-- -->
 
-##What is the average daily activity pattern?
+## What is the average daily activity pattern?
 The data must be treated again, but now using the following code.
 
 ```r
