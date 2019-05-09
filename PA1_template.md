@@ -57,7 +57,7 @@ In order to observe the distribution of the number of steps in a day, an histogr
 qplot(x=sum_step,data=step_per_day,bins=10,xlab = "Number of steps",ylab = "Frequency")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](figure/unnamed-chunk-2-1.png)<!-- -->
 
 ##What is the average daily activity pattern?
 The data must be treated again, but now using the following code.
@@ -74,7 +74,7 @@ A time series plot was made with it and is presented below.
 qplot(x=interval,y=mean_step,data=mean_step_per_period,geom="line",xlab="5 minute interval",ylab = "average number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](figure/unnamed-chunk-4-1.png)<!-- -->
 
 To find which 5 minute interval contains the higher number of steps, the function *which.max* was used
 
@@ -149,7 +149,7 @@ step_per_day_complete <- bind_rows(step_per_day_edited,step_per_day_corrected_ed
 qplot(x=sum_step,data=step_per_day_complete,bins=10,xlab = "Number of steps",ylab = "Frequency",fill=origin)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+![](unnamed-chunk-9-1.png)<!-- -->
 
 ##Are there differences in activity patterns between weekdays and weekends?
 
@@ -160,7 +160,7 @@ The modified data was used to answer this question. To divide properly the data,
 day <- 1:length(activity_data[,1])
 day[] <- "weekday"
 days <- weekdays(as.Date(activity_data$date))
-weekendays_id <- which(days=="sábado"|days=="domingo") # Names in portuguese
+weekendays_id <- which(days=="sÃ¡bado"|days=="domingo") # Names in portuguese
 day[weekendays_id] <- "weekend"
 activity_data_corrected_weekdays <- mutate(activity_data_corrected,day_type=day)
 ```
@@ -174,5 +174,5 @@ colnames(mean_step_per_period_corrected_weekdays) <- c("interval","day_type","st
 qplot(x=interval,y=steps,data=mean_step_per_period_corrected_weekdays,geom="line",facets = day_type~.,xlab="5 minute interval",ylab = "average number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](figure/unnamed-chunk-11-1.png)<!-- -->
 According to the graphic The activity during the weekend is less intense than during the weekdays.
