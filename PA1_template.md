@@ -2,7 +2,7 @@
 title: "Reproducible Research: Peer Assessment 1"
 output: 
   html_document:
-    keep_md: true 
+    keep_md: true
 ---
 
 
@@ -146,7 +146,7 @@ The modified data was used to answer this question. To divide properly the data,
 day <- 1:length(activity_data[,1])
 day[] <- "weekday"
 days <- weekdays(as.Date(activity_data$date))
-weekendays_id <- which(days=="sábado"|days=="domingo") # Names in portuguese
+weekendays_id <- which(days=="sÃ¡bado"|days=="domingo") # Names in portuguese
 day[weekendays_id] <- "weekend"
 activity_data_corrected_weekdays <- mutate(activity_data_corrected,day_type=day)
 ```
