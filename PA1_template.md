@@ -2,7 +2,8 @@
 title: "Reproducible Research: Peer Assessment 1"
 output: 
   html_document:
-    keep_md: true
+    keep_md: true 
+    
 ---
 
 
@@ -56,7 +57,7 @@ In order to observe the distribution of the number of steps in a day, an histogr
 qplot(x=sum_step,data=step_per_day,bins=10,xlab = "Number of steps",ylab = "Frequency")
 ```
 
-![](figure/unnamed-chunk-2-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ##What is the average daily activity pattern?
 The data must be treated again, but now using the following code.
@@ -90,6 +91,10 @@ with(mean_step_per_period,(interval[which.max(mean_step)]))
 First it was computed the number of NA contained in original data
 
 
+```r
+sum(is.na(activity_data$steps))
+```
+
 ```
 ## [1] 2304
 ```
@@ -97,6 +102,15 @@ First it was computed the number of NA contained in original data
 To treat the NA values, the approach used was to use the average of number of steps in that time interval. The new table was stored in *activity_data_corrected* variable
 
 
+```r
+row_activity_without_NA <- filter(activity_data,!is.na(steps))
+activity_data_corrected <- merge(activity_data,mean_step_per_period,all.x = TRUE) %>%
+                           filter(is.na(steps)) %>%
+                           mutate(steps=mean_step) %>%
+                           select(-mean_step) %>%
+                           bind_rows(row_activity_without_NA) %>%
+                           arrange(date,interval)
+```
 
 Whith this new table, the variable *step_per_day* was recalculated, and the new value is called *step_per_day_corrected*. Also the *mean_per_day_corrected* and the *median_per_day_corrected* were computed. 
 
@@ -146,7 +160,7 @@ The modified data was used to answer this question. To divide properly the data,
 day <- 1:length(activity_data[,1])
 day[] <- "weekday"
 days <- weekdays(as.Date(activity_data$date))
-weekendays_id <- which(days=="sÃ¡bado"|days=="domingo") # Names in portuguese
+weekendays_id <- which(days=="sábado"|days=="domingo") # Names in portuguese
 day[weekendays_id] <- "weekend"
 activity_data_corrected_weekdays <- mutate(activity_data_corrected,day_type=day)
 ```
