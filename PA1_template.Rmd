@@ -1,11 +1,9 @@
 ---
-title: "Reproducible Research - Course project 1"
-author: "Pedro Abreu"
-date: "5 de maio de 2019"
+title: "Reproducible Research: Peer Assessment 1"
 output: 
-    html_document:
-    md_document: 
-        variant: markdown_github
+  html_document:
+    keep_md: true 
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -72,13 +70,13 @@ with(mean_step_per_period,(interval[which.max(mean_step)]))
 
 First it was computed the number of NA contained in original data
 
-```{r echo=FALSE}
+```{r echo=TRUE}
 sum(is.na(activity_data$steps))
 ```
 
 To treat the NA values, the approach used was to use the average of number of steps in that time interval. The new table was stored in *activity_data_corrected* variable
 
-```{r echo=FALSE}
+```{r echo=TRUE}
 row_activity_without_NA <- filter(activity_data,!is.na(steps))
 activity_data_corrected <- merge(activity_data,mean_step_per_period,all.x = TRUE) %>%
                            filter(is.na(steps)) %>%
@@ -121,7 +119,7 @@ The modified data was used to answer this question. To divide properly the data,
 day <- 1:length(activity_data[,1])
 day[] <- "weekday"
 days <- weekdays(as.Date(activity_data$date))
-weekendays_id <- which(days=="sÃ¡bado"|days=="domingo") # Names in portuguese
+weekendays_id <- which(days=="sábado"|days=="domingo") # Names in portuguese
 day[weekendays_id] <- "weekend"
 activity_data_corrected_weekdays <- mutate(activity_data_corrected,day_type=day)
 ```
