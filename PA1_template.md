@@ -149,9 +149,9 @@ step_per_day_complete <- bind_rows(step_per_day_edited,step_per_day_corrected_ed
 qplot(x=sum_step,data=step_per_day_complete,bins=10,xlab = "Number of steps",ylab = "Frequency",fill=origin)
 ```
 
-![](unnamed-chunk-9-1.png)<!-- -->
+![](figure/unnamed-chunk-9-1.png)<!-- -->
 
-##Are there differences in activity patterns between weekdays and weekends?
+## Are there differences in activity patterns between weekdays and weekends?
 
 The modified data was used to answer this question. To divide properly the data, a new row is added to the dataset
 
