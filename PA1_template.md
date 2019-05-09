@@ -175,4 +175,5 @@ qplot(x=interval,y=steps,data=mean_step_per_period_corrected_weekdays,geom="line
 ```
 
 ![](figure/unnamed-chunk-11-1.png)<!-- -->
+
 According to the graphic The activity during the weekend is less intense than during the weekdays.
