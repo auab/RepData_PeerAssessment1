@@ -56,7 +56,7 @@ In order to observe the distribution of the number of steps in a day, an histogr
 qplot(x=sum_step,data=step_per_day,bins=10,xlab = "Number of steps",ylab = "Frequency")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](figure/unnamed-chunk-2-1.png)<!-- -->
 
 ##What is the average daily activity pattern?
 The data must be treated again, but now using the following code.
